@@ -41,10 +41,8 @@
         getUserMedia(constraints, function (stream){
             console.log(stream);
             let str = 'ssssss';
-
-            Object.keys(stream).forEach(((value, index, array) => {
-                str+=value;
-            })
+            str+=JSON.stringify(stream);
+            
             show.innerHTML=str;
             var audio=document.querySelector("audio");
             audio.src=URL.createObjectURL(stream);
