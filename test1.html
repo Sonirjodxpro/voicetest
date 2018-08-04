@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <audio></audio>
+<!--<input type="text"  x-webkit-speech id="d1" lang="zh-CN" x-webkit-grammar="bUIltin:search" onwebkitspeechchange="foo()"/>-->
+<button onclick="starta()">
+    开始调用
+</button>
+<script>
+    function starta() {
+       if(navigator.mediaDevices.getUserMedia){
+           alert(123)
+           console.log(navigator.mediaDevices.getUserMedia())
+       };
+    }
+</script>
+</body>
+</html>

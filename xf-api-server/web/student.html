@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div><a href="#" id="uploadUserid">uploadUserid</a><input type="text" id="userid"</div>
+	<div><a href="#" id="joinGroup">joinGroup</a><input type="text" id="joinid"</div>
+	<div><a href="#" id="leaveGroup">leaveGroup</a><input type="text" id="leaveid"</div>
+	<div><a href="#" id="forward">forward</a><input type="text" id="forwardid"</div>
+	<div><a href="#" id="forwardGroup">forwardGroup</a><input type="text" id="forwardGroupid"</div>
+	<div><a href="#" id="clearHistory">clearHistory</a><input type="text" id="clearHistoryid"</div>
+	<div><a href="#" id="queryHistory">queryHistory</a><input type="text" id="queryHistoryid"</div>
+	<div><a href="#" id="getOnLineList">getOnLineList</a><input type="text" id="getOnLineListid"</div>
+</body>
+	<script type="text/javascript" src="socket.io.js"></script>
+	<script type="text/javascript">
+		var socket=io.connect('http://192.168.111.252:12309',{'force new connection': true });
+		socket.on('connect', function() {
+			console.log(':connect');
+		});
+		socket.on('disconnect', function() {
+			console.log(':disconnect');
+		});
+		socket.on('forward', function(data) {
+			console.log('forward',data);
+		});
+		socket.on('forwardGroup', function(data) {
+			console.log('forwardGroup',data);
+		});
+		socket.on('joinGroup', function(data) {
+			console.log('joinGroup',data);
+		});
+		socket.on('leaveGroup', function(data) {
+			console.log('leaveGroup',data);
+		});
+		socket.on('forceLogout', function(data) {
+			console.log('forceLogout',data);
+		});
+
+		uploadUserid.onclick=function(){
+			socket.emit('uploadUserid',{userId:userid.value,appId:'classinteraction'},function(data){
+				console.log(data)
+			})
+		}
+
+		joinGroup.onclick=function(){
+			socket.emit('joinGroup',{groupid:joinid.value},function(data){
+				console.log(data)
+			})
+		}
+
+		leaveGroup.onclick=function(){
+			socket.emit('leaveGroup',{groupid:leaveid.value},function(data){
+				console.log(data)
+			})
+		}
+
+		forward.onclick=function(){
+			socket.emit('forward',{userid:forwardid.value,appid:'classinteraction',others:'kkkkk'},function(data){
+				console.log(data)
+			})
+		}
+
+		forwardGroup.onclick=function(){
+			socket.emit('forwardGroup',{groupid:forwardGroupid.value,appid:'classinteraction',others:'kkkkk'},function(data){
+				console.log(data)
+			})
+		}
+
+		clearHistory.onclick=function(){
+			socket.emit('clearHistory',{appid:clearHistoryid.value,others:'kkkkk'},function(data){
+				console.log(data)
+			})
+		}
+
+		queryHistory.onclick=function(){
+			socket.emit('queryHistory',{groupid:queryHistoryid.value,others:'kkkkk'},function(data){
+				console.log(data)
+			})
+		}
+
+		getOnLineList.onclick=function(){
+			socket.emit('getOnLineList',{groupid:getOnLineListid.value,others:'kkkkk'},function(data){
+				console.log(data)
+			})
+		}
+
+		// var button;
+		// var onclick=function(){
+		// 	// kkkkk
+		// }
+		// button.addEventListerner('click',onclick)
+
+	</script>
+</html>

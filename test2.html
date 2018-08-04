@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+<audio></audio>
+<button  class="recorderControl" style="width: 40px; height: 40px">录制</button>
+</body>
+<script type="application/javascript">
+    //访问用户媒体设备的兼容方法
+    function getUserMedia(constrains,success,error){
+        if(navigator.mediaDevices.getUserMedia){
+            //最新标准API
+            navigator.mediaDevices.getUserMedia(constrains).then(success).catch(error);
+        } else if (navigator.webkitGetUserMedia){
+            //webkit内核浏览器
+            navigator.webkitGetUserMedia(constrains).then(success).catch(error);
+        } else if (navigator.mozGetUserMedia){
+            //Firefox浏览器
+            navagator.mozGetUserMedia(constrains).then(success).catch(error);
+        } else if (navigator.getUserMedia){
+            //旧版API
+            navigator.getUserMedia(constrains).then(success).catch(error);
+        }
+    }
+
+    $(document).ready(function() {
+        // Prefer camera resolution nearest to 1280x720.
+        var constraints = { audio: true};
+        getUserMedia(constraints, function (stream){
+            console.log(stream);
+            var audio=document.querySelector("audio");
+            audio.src=URL.createObjectURL(stream);
+            var recorder=new MediaRecorder(stream);
+            var recorderControl=document.querySelector(".recorderControl");
+            recorderControl.onclick=function(){
+                this.textContent==="录制"?audio.play():audio.pause();
+                this.textContent==="录制"?recorder.start():recorder.stop();
+                this.textContent=this.textContent==="录制"?"停止":"录制";
+            };
+
+            recorder.ondataavailable=function(){
+            //收集媒体设备 获得到的 可以使用的 媒体流数据
+                console.log("input: ");
+                console.log(event.data)
+            }
+        }, function (error){
+            console.log("访问用户媒体设备失败：",error.name,error.message);
+        });
+
+    });
+</script>
+</html>

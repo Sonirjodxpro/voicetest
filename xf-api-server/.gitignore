@@ -1,0 +1,9 @@
+.project
+.idea
+node_modules/
+bower_components/
+dist
+test/
+src/less/*.css
+logs/*.log
+tmp
