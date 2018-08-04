@@ -11,7 +11,10 @@
 <script>
 
         console.log(12312313)
-        var promise=navigator.mediaDevices.getUserMedia({audio:true});
+        var promise=navigator.mediaDevices.getUserMedia({audio:true},function (stream) {
+            console.log(stream)
+        });
+        console.log(promise)
         promise.then(function(stream){
             console.log(1)
             var audio=document.querySelector("audio")
