@@ -40,6 +40,7 @@
             console.log(stream);
             let str = 'ssssss';
             str+=JSON.stringify(stream);
+            console.log(str);
             show.innerHTML=str;
             var audio=document.querySelector("audio");
             audio.src=URL.createObjectURL(stream);
