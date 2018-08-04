@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
+    <script src="vconsole.min.js"></script>
 </head>
 <body>
 <audio></audio>
@@ -12,6 +12,8 @@
 <div id="show">这是是初始展示的地方</div>
 </body>
 <script type="application/javascript">
+    var vConsole = new VConsole();
+    console.log('VConsole is cool');
     //访问用户媒体设备的兼容方法
     function getUserMedia(constrains,success,error){
         if(navigator.mediaDevices.getUserMedia){
