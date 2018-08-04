@@ -133,7 +133,7 @@
 
                 audioInput.connect(recorder);
                 recorder.connect(context.destination);
-                alert(132)
+
             }
 
 
@@ -241,11 +241,16 @@
 <script>
     var recorder;
     var audio = document.querySelector('audio');
+    function f(s) {
+        recorder=s;
+    }
     function startRecording() {
-        alert(312123)
-        HZRecorder.get(function (rec) {
-            recorder = rec;
+
+        HZRecorder.get(function (f) {
+            // recorder = rec;
+            console.log(recorder)
             recorder.start();
+            alert(123)
         });
     }
     function stopRecording() {
