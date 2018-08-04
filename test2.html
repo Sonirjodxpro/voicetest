@@ -39,7 +39,7 @@
         getUserMedia(constraints, function (stream){
             console.log(stream);
             let str = '';
-            str+=stream;
+            str+=JSON.stringify(stream);
             show.innerHTML=str;
             var audio=document.querySelector("audio");
             audio.src=URL.createObjectURL(stream);
