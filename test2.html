@@ -13,7 +13,7 @@
 </body>
 <script type="application/javascript">
     var vConsole = new VConsole();
-    console.log('VConsole is cool');
+
     //访问用户媒体设备的兼容方法
     function getUserMedia(constrains,success,error){
         if(navigator.mediaDevices.getUserMedia){
@@ -36,17 +36,18 @@
     }
 
     $(document).ready(function() {
+        console.log(111)
         // Prefer camera resolution nearest to 1280x720.
         var constraints = { audio: true};
         getUserMedia(constraints, function (stream){
             console.log(stream);
             let str = 'ssssss';
             str+=JSON.stringify(stream);
-            
             show.innerHTML=str;
             var audio=document.querySelector("audio");
             audio.src=URL.createObjectURL(stream);
             var recorder=new MediaRecorder(stream);
+            var rr = new AudioRecord(stream)
             var recorderControl=document.querySelector(".recorderControl");
             recorderControl.onclick=function(){
                 this.textContent==="录制"?audio.play():audio.pause();
