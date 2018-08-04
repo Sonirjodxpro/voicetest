@@ -15,16 +15,20 @@
     function getUserMedia(constrains,success,error){
         if(navigator.mediaDevices.getUserMedia){
             //最新标准API
+            alert('最新标准API')
             navigator.mediaDevices.getUserMedia(constrains).then(success).catch(error);
         } else if (navigator.webkitGetUserMedia){
             //webkit内核浏览器
+            alert('webkit内核浏览器')
             navigator.webkitGetUserMedia(constrains).then(success).catch(error);
         } else if (navigator.mozGetUserMedia){
             //Firefox浏览器
+            alert('Firefox浏览器')
             navagator.mozGetUserMedia(constrains).then(success).catch(error);
         } else if (navigator.getUserMedia){
             //旧版API
             navigator.getUserMedia(constrains).then(success).catch(error);
+            alert('旧版API')
         }
     }
 
