@@ -46,7 +46,7 @@
             var audio=document.querySelector("audio");
             audio.src=URL.createObjectURL(stream);
             var recorder=new MediaRecorder(stream);
-            var rr = new AudioRecord(stream)
+            // var rr = new AudioRecord(stream)
             var recorderControl=document.querySelector(".recorderControl");
             recorderControl.onclick=function(){
                 console.log(122)
