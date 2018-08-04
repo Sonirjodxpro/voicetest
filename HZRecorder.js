@@ -114,8 +114,10 @@
 
         //开始录音
         this.start = function () {
+
             audioInput.connect(recorder);
             recorder.connect(context.destination);
+            alert(132)
         }
 
 
