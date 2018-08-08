@@ -227,7 +227,31 @@
                                     break;
                             }
                         });
-                } else {
+                } else if( navigator.mediaDevices.getUserMedia){
+                    console.log(123123123)
+                    navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
+                        var rec = new HZRecorder(stream, config);
+                        callback(rec);
+                    }).catch(function (error) {
+                        switch (error.code || error.name) {
+                            case 'PERMISSION_DENIED':
+                            case 'PermissionDeniedError':
+                                HZRecorder.throwError('用户拒绝提供信息111。');
+                                break;
+                            case 'NOT_SUPPORTED_ERROR':
+                            case 'NotSupportedError':
+                                HZRecorder.throwError('浏览器不支持硬件设备111。');
+                                break;
+                            case 'MANDATORY_UNSATISFIED_ERROR':
+                            case 'MandatoryUnsatisfiedError':
+                                HZRecorder.throwError('无法发现指定的硬件设备111。');
+                                break;
+                            default:
+                                HZRecorder.throwError('无法打开麦克风。异常信息111:' + (error.code || error.name));
+                                break;
+                        }
+                    });
+                }else {
                     HZRecorder.throwErr('当前浏览器不支持录音功能。'); return;
                 }
             }
